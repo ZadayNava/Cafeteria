@@ -338,7 +338,54 @@
 	<!--Templeate adicionales-->
 	<!--Son "microtempleates que contienen estructura y contenido en funcion de la pagina/segmento que se desea mostrar-->
 	<xsl:template name="Home">
-		<h1>Hola desde Home</h1>
+		<!-- ======= Why Us Section ======= -->
+		<section id="why-us" class="why-us">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Platillos</h2>
+					<p>Nuestros Platillos Favoritos</p>
+				</div>
+
+				<div class="row">
+					<!--PRODUCTOS POPULARES DESDE EL ML-->
+					<!--Creo una recorrido para seleccinar el primero platillo de cada tipo de platillo excepto de bebidas-->
+					<xsl:for-each select="Platillos/Tipo[@Nombre != 'Bebidas']/Platillo[@Orden = 1]">
+						<div class="col-lg-4">
+							<div class="box" data-aos="zoom-in" data-aos-delay="100">
+								<div class="section-title">
+									<h2>
+										<!--El ombre del tipo de platillo-->
+										<xsl:value-of select="../@Nombre"/>
+									</h2>
+								</div>
+								<br></br>
+								<!--Inferimos el dato proveniente del nodo en la propiedad de la etiqueta (imagen)-->
+								<img src="{Imagen}" alt="{Imagen}" style="width:100%; height:auto;"></img>
+								<br></br>
+								<h4>
+									<!--Aqui muestro el nombre del platillo-->
+									<!--aqui toma la primera letra en h4 y del resto lo hace en h5-->
+									<span style="display:contents;">
+										<!--substring(cadena, lugar inicial, numero de la cadena-->
+										<xsl:value-of select="substring(@Nombre, 1, 1)"/>
+									</span>
+									<!--string-length(cadena) => el total de datos de la cadena-->
+									<xsl:value-of select="substring(@Nombre,2, string-length(@Nombre))"/>
+								</h4>
+								<h5>
+									<xsl:value-of select="Precio"/>
+								</h5>
+								<p>
+									<xsl:value-of select="Descripcion"/>
+								</p>
+							</div>
+						</div>
+					</xsl:for-each>
+				</div>
+			</div>
+		</section>
+		<!-- End Why Us Section -->
 	</xsl:template>
 	<xsl:template name="Carta">
 		<h1>Hola desde Carta</h1>
