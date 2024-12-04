@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Menu>
 	<Opciones>
-		<Opcion Url="/Default.aspx?Id=0" Texto="Home" Id="0"></Opcion>
-		<Opcion Url="/Default.aspx?Id=1" Texto="Carta" Id="1"></Opcion>
-		<Opcion Url="/Default.aspx?Id=2" Texto="Contacto" Id="2"></Opcion>
-		<Opcion Url="/Default.aspx?Id=3" Texto="Play Room" Id="3"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=0" Texto="Home" Id="0"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=1" Texto="Carta" Id="1"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=2" Texto="Contacto" Id="2"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=3" Texto="Play Room" Id="3"></Opcion>
 	</Opciones>
 
 	<Platillos>
