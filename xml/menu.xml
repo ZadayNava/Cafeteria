@@ -89,7 +89,7 @@
 				<Imagen>assets/img/8.jpg</Imagen>
 				<Imagen>assets/img/8a.jpg</Imagen>
 				<Ingredientes>
-					<Ingrediente Nombre="Ingredientes">chocolate, chiles,jitomate,almendras</Ingrediente>
+					<Ingrediente Nombre="Ingredientes 2">chocolate, chiles,jitomate,almendras</Ingrediente>
 
 					<Ingrediente Imagen="assets/img/8b.jpg" Nombre="Chocolate"></Ingrediente>
 
