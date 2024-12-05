@@ -7,7 +7,6 @@
 	la propiedad "name" establece el nombre de la variable
 	la propiedad select establece el origen del dato de la variable-->
 	<xsl:param name="TipoMenu" select="TipoMenu"></xsl:param>
-	<xsl:param name="TipoBebidas" select="TipoBebidas"></xsl:param>
 
 	<!--Mi template Principal
 	La idea es recrear el comportamiento de una "pagina maestra" donde la pagina principal carga los elementos
@@ -494,8 +493,8 @@
 							<xsl:for-each select="Platillos/Tipo[@Nombre = 'Bebidas']/Platillo">
 								<li class="nav-item">
 									<xsl:choose>
-										<xsl:when test="@Orden = 1">
-											<!--El data-bs-toggle es el que te da la base del llamado, en este caso "tab"--> 
+										<xsl:when test=" @Orden = 1">
+											<!--El data-bs-toggle es el que te da la base del llamado, en este caso "tab"-->
 											<!--el {} es para ingresar un dato duro dentro de otra propiedad-->
 											<a class="nav-link active show" data-bs-toggle="tab" href="#tab-{@Orden}">
 												<xsl:value-of select="@Nombre"/>
@@ -571,7 +570,61 @@
 
 	</xsl:template>
 	<xsl:template name="Carta">
-		<h1>Hola desde Carta</h1>
+
+		<!-- ======= Menu Section ======= -->
+		<section id="menu" class="menu section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Menu</h2>
+					<p>Check Our Tasty Menu</p>
+				</div>
+				<!--Selectores-->
+				<div class="row" data-aos="fade-up" data-aos-delay="100">
+					<div class="col-lg-12 d-flex justify-content-center">
+						<ul id="menu-flters">
+							<!--data- es un identificador busca todo lo que empate -->
+							<li data-filter="*" class="filter-active">All</li>
+							<!--Recorro todos los tipos de platillos para seleccionar su Nombre-->
+							<xsl:for-each select="Platillos/Tipo">
+								<!--Infiero el dato correspondiente para que los filtros cambien en funcion del mismo-->
+								<li data-filter=".filter-{@Nombre}">
+									<xsl:value-of select="@Nombre"/>
+								</li>
+							</xsl:for-each>
+						</ul>
+					</div>
+				</div>
+				<!--Contenido-->
+				<div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+					<!--Recuperar los elementos que coicidan con las cases de mi XML-->
+					<xsl:for-each select="Platillos/Tipo/Platillo">
+
+						<div class="col-lg-6 menu-item filter-{../@Nombre}">
+							<img src="{Imagen}" class="menu-img" alt="{Imagen}"></img>
+							<div class="menu-content">
+								<a href="#">
+									<xsl:value-of select="@Nombre"/>
+								</a>
+								<span>
+									<xsl:value-of select="Precio"/>
+								</span>
+							</div>
+							<div class="menu-ingredients">
+								<xsl:value-of select="Descripcion"/>
+							</div>
+						</div>
+
+
+					</xsl:for-each>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Menu Section -->
+	
 	</xsl:template>
 	<xsl:template name="Contacto">
 		<h1>Hola desde Contacto</h1>
