@@ -43,6 +43,9 @@
 				<!-- Template Main CSS File -->
 				<link href="assets/css/style.css" rel="stylesheet"></link>
 
+				<!-- JS References -->
+				<script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
+
 			</head>
 
 			<body>
@@ -287,6 +290,9 @@
 				<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 				<script src="assets/vendor/php-email-form/validate.js"></script>
 				<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+				<!-- JS References -->
+				<script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
 
 				<!-- Template Main JS File -->
 				<script src="assets/js/main.js"></script>
@@ -624,10 +630,180 @@
 			</div>
 		</section>
 		<!-- End Menu Section -->
-	
+
 	</xsl:template>
 	<xsl:template name="Contacto">
-		<h1>Hola desde Contacto</h1>
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+				<div class="section-title">
+					<h2>Contacto</h2>
+					<p>Queremos Escucharte</p>
+				</div>
+			</div>
+			<!--Mapa-->
+			<div data-aos="fade-up">
+				<style>
+					#map{
+					border:0;
+					width:100%;
+					height: 350px;
+					}
+
+				</style>
+				<div id="google-map">
+					<div id="map"></div>
+				</div>
+				<text id="direccion"> Esta es una etiqueta de texto</text>
+				<div class="col-lg-12 margin-bottom-30" id="street" style="height:400px; width:100%"></div>
+			</div>
+			<!--Datos del formulario-->
+			<div class="container" data-aos="fade-up">
+				<div class="row mt-5">
+					<!--datos de contacto-->
+					<div class="col-lg-4">
+						<div class="info">
+							<div class="address">
+								<i class="bi bi-geo-alt"></i>
+								<h4>Direccion</h4>
+								<p>
+									<xsl:value-of select="Datos/Direccion"/>
+								</p>
+							</div>
+							<div class="open-hours">
+								<i class="bi bi-clock"></i>
+								<h4>Horarios:</h4>
+								<xsl:for-each select="Datos/Horarios/Horario">
+									<p>
+										<xsl:value-of select="."/>
+
+									</p>
+
+								</xsl:for-each>
+							</div>
+							<div class="email">
+								<i class="bi bi-envelope"></i>
+								<h4>Email:</h4>
+								<p>
+									<a href="mailto:{Datos/correo}">
+										<xsl:value-of select="Datos/correo"/>
+									</a>
+								</p>
+							</div>
+							<div class="phone">
+								<i class="bi bi-phone"></i>
+								<h4>Telefono:</h4>
+								<p>
+									<xsl:value-of select="Datos/Telefono"/>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!--formulario-->
+					<div class="col-lg-8 mt-5 mt-lg-0">
+						<form action="#" method="post" role="form" class="php-email-form">
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<input type="text" name="contac_name" class="form-control" id="contac_name" placeholder="Ingresa tu nombre" required=""/>
+								</div>
+								<div class="col-md-6 form-group mt-3 mt-md-0">
+									<input type="email" class="form-control" name="contact_email" id="contact_email" placeholder="Ingrese su email" required=""/>
+								</div>
+								<div class="row">
+									<div class="col-md-6 form-group mt-3 mt-md-0">
+										<input type="number" name="contac_people" class="form-control" id="contac_people" required="true" max="8" min="1" placeholder="# de Personas"/>
+									</div>
+									<div class="col-md-6 form-group mt-3 mt-md-0">
+										<input type="number" class="form-control" name="contact_add" id="contact_add" required="true" max="4" min="0" placeholder="# de Personas adicionales"/>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 form-group mt-3 mt-md-0">
+										<input type="date" id="contact_fecha" name="contact_fecha" class="form-control" required="true"/>
+									</div>
+									<div class="col-md-6 form-group mt-3 mt-md-0">
+										<input type="time" id="contact_hora" name="contact_hora" class="form-control" required ="true" max="19:00:00" min="08:00:00"/>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 form-group mt-3 mt-md-0">
+										<output id="total" class="form-control" disable="true"/>
+									</div>
+								</div>
+								<div class="text-center">
+									<a class="book-a-table-btn" id="miBoton" onclick="enviar_formulario()">Presionar</a>
+								</div>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+		<script>
+			<![CDATA[
+			console.log("Hola desde el template de contacto");
+			/*$ => uso de Jquery
+			(document) => hace referencia al objeto que deseo poner o manipular 
+			.ready() => evento que se dispara una vez que el DOM ha sido cargado
+			function (){} => Es una funcion anonima*/
+			$(document).ready(function(){
+			console.log("Hola desde Jquery");
+			//recuperar la fecha actual del servidor(donde se aloja el sistema)
+			var now = new Date(Date.now());
+			//recuperar el control "contact_hora"
+			var timeControl = document.getElementById("contact_hora");
+			//recupero la hora y los minutos actuales del servidor
+			var horas = now.getHours();
+			var minutos = now.getMinutes();
+			//imprimo en la consola los resultados
+			console.log("Now: ");
+			console.log(now);
+			console.log("La hora actual es: "+horas+":"+minutos);
+			console.log("horas: "+horas);
+			console.log("minutos: "+minutos);
+			console.log("timeControl: ");
+			console.log(timeControl);
+			//investigar caracteres de escape
+			//validar el formato de la fecha
+			/*
+			if(horas < 10){
+			horas = "0" + horas;
+			}
+			*/
+			horas = horas < 10 ? "0" + horas:horas;
+			minutos = minutos < 10 ? "0" + minutos:minutos;
+			//concateno el resultado
+			var formatted = horas+":"+minutos;
+			//puedo asignar los valores resultantes usando JS, Jquery(2)
+			//js
+			//TimeControl.value = formatted;
+			//Jquery
+			//$('#contact_hora').val(formatted);
+			//Jquery apelando a un atributo
+			$("#contact_hora").attr("value",formatted);
+			//Recuperar la fecha del servidor
+			//esto ya lo hicimos en la variable "now"
+			//Obtener los datos que necesito | subtraer la fecha | convertir la fecha a un formato propio
+			dia = now.getDate();
+			mes = now.getMonth() + 1;
+			anio = now.getFullYear();
+			//operaciones Ternaria
+			//(condicion) ? si se cumple : si no se cumple;
+			//toda operacion ternaria tiene un resultado, por lo tanto dbe almacenarse en un variable
+			mes = mes < 10 ? "0" + mes : mes
+			dia = dia < 10 ? "0" + dia : dia
+			//Formatear la fecha
+			var fechaFormatted = anio + "-"+ mes + "-" + dia
+			console.log("fechaFormatted: " + fechaFormatted);
+			//Asigno los valores
+			//apelar a un atributo con el attr
+			$('#contact_fecha').attr('value',fechaFormatted)
+			});	
+			]]>
+		</script>
 	</xsl:template>
 	<xsl:template name="PlayRomm">
 		<h1>Hola desde PlayRoom</h1>
