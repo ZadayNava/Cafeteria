@@ -1,0 +1,38 @@
+﻿/*
+    # => ID / Identificador
+    . => clase
+    nada => Nombre de las etiquetas/elemento
+*/
+
+#cuadro1{
+    background-color: steelblue;
+}
+
+#cuadro2 {
+    background-color: darkred;
+}
+
+#cuadro3 {
+    background-color: sandybrown;
+}
+
+#papelera {
+    background-color: teal;
+}
+
+
+#cuadro1, #cuadro3, #cuadro2, #papelera {
+    float:left;
+    width:90px;
+    height:90px;
+    padding: 10px;
+    margin:10px;
+}
+.cuadradito{
+    background: #c79c60;
+    border: 2px solid #882;
+    width: 5px;
+    height: 5px;
+    padding: 0 10px 15px;
+    margin: 5px;
+}

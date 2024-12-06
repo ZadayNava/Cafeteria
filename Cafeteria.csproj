@@ -67,7 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio.mp3" />
+    <Content Include="assets\css\DragandDrop.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\GoProHW.mp4" />
     <Content Include="assets\img\about-bg.jpg" />
     <Content Include="assets\img\about.jpg" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -107,6 +110,7 @@
     <Content Include="assets\img\testimonials\testimonials-3.jpg" />
     <Content Include="assets\img\testimonials\testimonials-4.jpg" />
     <Content Include="assets\img\testimonials\testimonials-5.jpg" />
+    <Content Include="assets\js\DragandDrop.js" />
     <Content Include="assets\js\google.js" />
     <Content Include="assets\js\jquery-1.11.2.min.js" />
     <Content Include="assets\js\main.js" />
