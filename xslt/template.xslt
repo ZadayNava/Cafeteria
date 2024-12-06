@@ -45,6 +45,7 @@
 
 				<!-- JS References -->
 				<script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 			</head>
 
@@ -633,6 +634,38 @@
 
 	</xsl:template>
 	<xsl:template name="Contacto">
+
+		<!--API de Google-->
+		<script>
+			// Definir la función initMap globalmente
+			function initMap() {
+			// Asegúrate de que aquí inicializas el mapa correctamente
+			const mapOptions = {
+			center: { lat: -34.397, lng: 150.644 },  // Cambia estas coordenadas por las deseadas
+			zoom: 8
+			};
+			const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			}
+		</script>
+
+		<script>
+			<![CDATA[
+			(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+			key: "AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs",
+			// Add other bootstrap parameters as needed, using camel case.
+			// Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+			});]]>
+		</script>
+
+		<!--Referencia a mi archivo JS-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs&amp;callback=initMap"
+				async="" defer=""></script>
+
+
+		<!--Mis scripts personalizados-->
+		<script src="assets/js/MiScript.js" type="text/javascript"></script>
+		<script src="assets/js/google.js" type="module"></script>
+
 		<section id="contact" class="contact">
 			<div class="container" data-aos="fade-up">
 				<div class="section-title">
@@ -703,17 +736,17 @@
 						<form action="#" method="post" role="form" class="php-email-form">
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<input type="text" name="contac_name" class="form-control" id="contac_name" placeholder="Ingresa tu nombre" required=""/>
+									<input type="text" name="contac_name" class="form-control" id="contac_name" placeholder="Ingresa tu nombre" maxlength="35" required="true"/>
 								</div>
 								<div class="col-md-6 form-group mt-3 mt-md-0">
-									<input type="email" class="form-control" name="contact_email" id="contact_email" placeholder="Ingrese su email" required=""/>
+									<input type="email" class="form-control" name="contact_email" id="contact_email" placeholder="Ingrese su email" required="true"/>
 								</div>
 								<div class="row">
 									<div class="col-md-6 form-group mt-3 mt-md-0">
-										<input type="number" name="contac_people" class="form-control" id="contac_people" required="true" max="8" min="1" placeholder="# de Personas"/>
+										<input type="number" name="contac_people" class="form-control" id="contac_people" required="true" max="8" min="1" placeholder="# de Personas" oninput="sumar()"/>
 									</div>
 									<div class="col-md-6 form-group mt-3 mt-md-0">
-										<input type="number" class="form-control" name="contact_add" id="contact_add" required="true" max="4" min="0" placeholder="# de Personas adicionales"/>
+										<input type="number" class="form-control" name="contact_add" id="contact_add" required="true" max="4" min="0" placeholder="# de Personas adicionales" oninput="sumar()"/>
 									</div>
 								</div>
 								<div class="row">
@@ -751,6 +784,7 @@
 			function (){} => Es una funcion anonima*/
 			$(document).ready(function(){
 			console.log("Hola desde Jquery");
+			
 			//recuperar la fecha actual del servidor(donde se aloja el sistema)
 			var now = new Date(Date.now());
 			//recuperar el control "contact_hora"
